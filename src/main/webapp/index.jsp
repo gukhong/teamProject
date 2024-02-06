@@ -9,6 +9,7 @@
 <h2>첫 페이지 입니다.</h2>
 <a href="<%= request.getContextPath() %>/goods?cmd=list">리스트 페이지 연결</a>
 <p>삭제가 되다니 놀라운거ㅗㄹ???</p>
+<p>상제가 추가한 p</p>
 </body>
 </html>
 <%--  --%>
