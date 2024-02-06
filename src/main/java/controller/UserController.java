@@ -23,7 +23,6 @@ public class UserController extends HttpServlet {
     protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("process called");
         String cmd = request.getParameter("cmd");
-        System.out.println("cmd: " + cmd);
         
         if ("login".equals(cmd)) {
             String userId = request.getParameter("userId");
@@ -78,12 +77,10 @@ public class UserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         process(request, response);
-        System.out.println("doGet called");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         process(request, response);
-        System.out.println("doPost called");
     }
 }
