@@ -31,12 +31,35 @@ public class GoodsController extends HttpServlet {
 
     	//리스트 페이지 요청
     	if(cmd.equals("list")) {
-    		List<GoodsDTO> list = goodsService.제품리스트반환();
+    		int page = Integer.parseInt(req.getParameter("page"));//필요정보 받아오기
+    		List<GoodsDTO> list = goodsService.listAll(page);  //리턴할 리스트 만들기
+    		int goodscount = goodsService.count(); // 총상품 갯수 리턴
+    		int lastpage = 0; 
+    		if(goodscount%5==0) {
+    			lastpage = (goodscount-1)/5;
+    		}else {
+    			lastpage = goodscount/5;
+    		}
+    		
+    		//보낼정보 담아주기
+    		req.setAttribute("page", page);
     		req.setAttribute("list", list);
+    		req.setAttribute("lastpage", lastpage);
+    		
+    		//페이지 이동
     		req.getRequestDispatcher("goods/list.jsp")
     		.forward(req, res);
-
-
+    	}
+    	
+    	//상세보기
+    	else if (cmd.equals("detail")) {
+    		String code = req.getParameter("code"); //기준이 되는 코드값 받아오기
+    		GoodsDTO dto = goodsService.detailview(code); //코드값에 맞는 1개의 레코드 불러오기 (dto type)
+    		
+    		req.setAttribute("dto", dto); //request 내장객체에 1개 레코드 담아주기
+    		req.getRequestDispatcher("/goods/detail.jsp")
+    		.forward(req, res);
+    		
     	}
 
 
