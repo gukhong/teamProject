@@ -76,6 +76,7 @@
                     <a class="nav-item nav-link" href="<c:url value='/user/join.jsp'/>">회원가입</a>
                     <a class="nav-item nav-link" href="<c:url value='/user/login.jsp'/>">로그인</a>
                     <a class="nav-item nav-link" href="<c:url value='/goods?cmd=list&page=0'/>">도서쇼핑</a>
+                    <a class="nav-item nav-link" href="<c:url value='/goods?cmd=cart&page=0'/>">장바구니</a>
                 </div>
             </div>
         </div>
@@ -96,6 +97,7 @@
                     <a href="<c:url value='/logout'/>">로그아웃</a>
                     <a class="nav-item nav-link" href="<c:url value='/user/login.jsp'/>">장바구니</a>
                     <a class="nav-item nav-link" href="<c:url value='/goods?cmd=list&page=0'/>">도서쇼핑</a>
+                    <a class="nav-item nav-link" href="<c:url value='/goods?cmd=cart&page=0'/>">장바구니</a>
                 </div>
             </div>
         </div>
