@@ -8,10 +8,18 @@ import domain.goods.dto.GoodsDTO;
 public class GoodsService {
 
 	//필드
-	private GoodsDAO goodDAO = new GoodsDAO() ;
+	private GoodsDAO goodsDAO = new GoodsDAO() ;
 
-	public List<GoodsDTO> 제품리스트반환() {
-		return goodDAO.goodslist();
+	public List<GoodsDTO> listAll(int page) {
+		return goodsDAO.goodslist(page);
+	}
+	
+	public int count() {
+		return goodsDAO.count();
+	}
+	
+	public GoodsDTO detailview(String code) {
+		return goodsDAO.findCodeDetail(code);
 	}
 
 }
