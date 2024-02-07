@@ -28,6 +28,22 @@
             color: #fff;
             padding: 10px 0;
         }
+           color: #333;
+            background-color: #fff;
+        }
+        .navbar, .footer {
+            background-color: #000;
+            color: #fff;
+        }
+        .carousel-inner img {
+            filter: grayscale(100%);
+        }
+        .book-title {
+            color: #000;
+        }
+        .book-description {
+            color: #666;
+        }
     </style>
 </head>
 <body>

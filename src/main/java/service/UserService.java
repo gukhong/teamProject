@@ -15,7 +15,6 @@ public class UserService {
 
         try {
             conn = DBConnection.getConnection();
-           System.out.println("커넥션객체 반환");
             String sql = "SELECT userId FROM user_info WHERE userId = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, userId);
