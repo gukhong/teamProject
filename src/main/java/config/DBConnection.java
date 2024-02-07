@@ -28,9 +28,9 @@ public class DBConnection {
 
 	public static void close(Connection conn, Statement stmt, ResultSet rs) {//Disconnection
 	    try {
-	        conn.close();
-	        stmt.close();
-	        rs.close();
+	    	if(conn!=null)conn.close();
+	    	if(stmt!=null)stmt.close();
+	    	if(rs!=null)rs.close();
 	        System.out.println("DB연결 해제");
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -39,8 +39,8 @@ public class DBConnection {
 
 	public static void close(Connection conn, Statement stmt) {
 	    try {
-	        conn.close();
-	        stmt.close();
+	    	if(conn!=null)conn.close();
+	    	if(stmt!=null)stmt.close();
 	        System.out.println("DB연결 해제");
 	    } catch (Exception e) {
 	        e.printStackTrace();
