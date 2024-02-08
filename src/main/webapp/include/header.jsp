@@ -43,9 +43,9 @@
             background-color: #000;
             color: #fff;
         }
-        .carousel-inner img {
+/*         .carousel-inner img {
             filter: grayscale(100%);
-        }
+        } */
         .book-title {
             color: #000;
         }

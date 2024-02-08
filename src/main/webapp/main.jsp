@@ -5,14 +5,16 @@
         <!-- 신착 도서 슬라이드 -->
         <div id="newBooksCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="path/to/newBook1.jpg" class="d-block w-100" alt="신착 도서 1">
+            <h2>신착도서</h2>
+                <div class="carousel-item active"><a href="goods?cmd=detail&code=이처럼%20_소설_2024">
+                    <img src="images/sdimg/big_banner1.jpg" class="d-block w-100" alt="신착 도서 1" ></a>
                 </div>
-                <div class="carousel-item">
-                    <img src="path/to/newBook2.jpg" class="d-block w-100" alt="신착 도서 2">
+                <div class="carousel-item"><a href="goods?cmd=detail&code=무조건%20_요리_2023">
+                    <img src="images/sdimg/big_banner2.jpg" class="d-block w-100" alt="신착 도서 2"  >
+                    </a>
                 </div>
-                <div class="carousel-item">
-                    <img src="path/to/newBook3.jpg" class="d-block w-100" alt="신착 도서 3">
+                <div class="carousel-item"><a href="goods?cmd=detail&code=Do%20i_IT_2022">
+                    <img src="images/sdimg/big_banner3.jpg" class="d-block w-100" alt="신착 도서 3"></a>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#newBooksCarousel" role="button" data-slide="prev">
@@ -29,14 +31,20 @@
         <h2 class="mt-5">오늘의 추천 도서</h2>
         <div class="row">
             <div class="col-md-6 mt-4">
-                <img src="path/to/recommendedBook1.jpg" class="img-fluid" alt="추천 도서 1">
-                <h5 class="book-title">도서 제목 1</h5>
-                <p class="book-description">도서 설명 1</p>
+            <a href="goods?cmd=detail&code=미키7%20_소설_2023">
+                <img src="upload/small/미키7 _소설_2023.jpg" class="img-fluid" alt="추천 도서 1" width="38%">
+                </a>
+                <h5 class="book-title">미키7 반물질의 블루스</h5>
+                <p class="book-description">에드워드 애슈턴(저) | 황금가지</p>
+                <h6> 15,300원</h6>
             </div>
             <div class="col-md-6 mt-4">
-                <img src="path/to/recommendedBook2.jpg" class="img-fluid" alt="추천 도서 2">
-                <h5 class="book-title">도서 제목 2</h5>
-                <p class="book-description">도서 설명 2</p>
+            <a href="goods?cmd=detail&code=이처럼%20_소설_2024">
+                <img src="upload/small/이처럼 _소설_2024.jpg" class="img-fluid" alt="추천 도서 2" width="41%">
+                </a>
+                <h5 class="book-title">이처럼 사소한 것들</h5>
+                <p class="book-description">클레어 키건(저) | 다산책방</p>
+                <h6> 12,420원</h6>
             </div>
         </div>
     </div>
