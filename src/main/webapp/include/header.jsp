@@ -10,12 +10,16 @@
     <title>대현문고 main</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><!-- Jquery -->
+    <!-- Jquery -->
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+
      <!-- 섬머노트 -->
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	
+
     <!-- Custom CSS -->
     <style>
         body {
@@ -98,6 +102,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link" href="<c:url value='/main.jsp'/>">홈</a>
+
 					<a class="nav-item nav-link" href="<c:url value='/logout'/>">[로그아웃]</a>
 					<!-- admin으로 접속시 관리자메뉴 버튼 생성 -->
 					<% if("admin".equals(userId)){ %>

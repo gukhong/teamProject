@@ -7,9 +7,29 @@
 <%@ include file="../include/header.jsp" %>
 
 
-<h3>상품 리스트 <a><input type="text" name="select" value="검색하기"/></a></h3>
-
-	
+<script>
+	function cartadd(userName, code){
+		let data = {
+			userName : userName,
+			code : code
+		};
+		
+		 $.ajax({
+			type : "POST",
+			url : "/cart?cmd=add",
+			data : JSON.stringify(data),
+			contentType : "application/json; charset=utf-8"
+		}).done(function(result){
+			if(result=="ok"){
+				alert("장바구니 담기 성공");
+			}else{
+				alert("재고부족");
+			}
+		
+		})
+	}
+</script>
+<h3 id="test">상품 리스트 <a><input type="text" name="select" value="검색하기"/></a></h3>
 	<c:forEach var="dto" items="${list}">
 	<div class="card">
 	  	<div class="card-body" style="display:flex">
@@ -17,6 +37,7 @@
 	  	<img src="upload/small/${dto.code}.jpg" width="200" height="300" />
 	  	</div>
 	  	<div>
+	  		<input type="hidden" name ="cartCode" value="${dto.code }" />
 	  		<h3>책이름 : ${dto.bookname}</h3>
 	  		<p>분류 : ${dto.booktype} //  CODE : ${dto.code} // 수량 : ${dto.stack }</p>
 	  		<p>작가 : ${dto.author }</p>
@@ -30,13 +51,10 @@
 		<a href="<%= request.getContextPath() %>/goods?cmd=detail&code=${dto.code}" class="btn btn-primary">상세보기</a>
 		<c:choose>
 			<c:when test="${sessionScope.code!=null}">
-				<a href="#" class="btn btn-primary">장바구니 가기</a>
-				<%-- <a href="<%= request.getContextPath() %>
-				/goods?cmd=basket&code=${dto.code}&stack=${dto.stack}" class="btn btn-primary">장바구니 가기</a> --%>
+			<button type="button" onclick="/cart?cmd=list" class="btn btn-primary">장바구니 가기</button>
 			</c:when>
 			<c:otherwise>
-				<a href="<%= request.getContextPath() %>
-				/goods?cmd=basket&code=${dto.code}&stack=${dto.stack}" class="btn btn-primary">장바구니 담기</a>
+			<button type="button" onclick="cartadd( '${sessionScope.userName }' , '${dto.code }')" class="btn btn-primary">장바구니 담기</button>
 			</c:otherwise>
 		</c:choose>
 		
