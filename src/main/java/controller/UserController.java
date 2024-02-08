@@ -24,6 +24,7 @@ public class UserController extends HttpServlet {
         System.out.println("process called");
         String cmd = request.getParameter("cmd");
         
+        //로그인 기능
         if ("login".equals(cmd)) {
             String userId = request.getParameter("userId");
             String userPass = request.getParameter("userPass");
@@ -46,9 +47,7 @@ public class UserController extends HttpServlet {
             }
         }
 
-
-
-        
+        //회원가입 기능
         if ("join".equals(cmd)) {
             System.out.println("join cmd");
     
@@ -71,6 +70,42 @@ public class UserController extends HttpServlet {
         } else if ("joinForm".equals(cmd)) {
             request.getRequestDispatcher("/user/join.jsp").forward(request, response); // 회원가입 페이지로 이동
         }
+        
+        //비밀번호 변경
+        if ("updatePassword".equals(cmd)) {
+            String userId = (String) request.getSession().getAttribute("user");
+            String currentPassword = request.getParameter("currentPassword");
+            String newPassword = request.getParameter("newPassword");
+            String confirmNewPassword = request.getParameter("confirmNewPassword");
+
+            try {
+                boolean isCurrentPasswordValid = userService.checkPassword(userId, currentPassword);
+                if (!isCurrentPasswordValid) {
+                    // 현재 비밀번호가 일치하지 않는 경우
+                    request.setAttribute("updateMessage", "현재 비밀번호가 잘못되었습니다.");
+                    request.getRequestDispatcher("/user/update.jsp").forward(request, response);
+                    return;
+                }
+
+                if (!newPassword.equals(confirmNewPassword)) {
+                    // 새 비밀번호와 확인 비밀번호가 일치하지 않는 경우
+                    request.setAttribute("updateMessage", "새 비밀번호가 일치하지 않습니다.");
+                    request.getRequestDispatcher("/user/update.jsp").forward(request, response);
+                    return;
+                }
+
+                // 비밀번호 업데이트
+                userService.updatePassword(userId, newPassword);
+                response.sendRedirect(request.getContextPath() + "/user/updateSuccess.jsp");
+            } catch (Exception e) {
+                e.printStackTrace();
+                request.setAttribute("updateMessage", "비밀번호 업데이트 중 오류가 발생했습니다.");
+                request.getRequestDispatcher("/user/updatePassword.jsp").forward(request, response);
+            }
+        }
+
+        
+        
         }
 
  

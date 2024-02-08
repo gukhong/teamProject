@@ -99,11 +99,11 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link" href="<c:url value='/main.jsp'/>">홈</a>
-
+					<a class="nav-item nav-link" href="<c:url value='/user/update.jsp'/>" target="_blank">[회원정보수정]</a>
 					<a class="nav-item nav-link" href="<c:url value='/logout'/>">[로그아웃]</a>
 					<!-- admin으로 접속시 관리자메뉴 버튼 생성 -->
 					<% if("admin".equals(userId)){ %>
-						<a class="nav-item nav-link" href="<c:url value='/admin/adminpage.jsp'/>" target="_blank">[관리자 페이지]</a>
+						<a class="nav-item nav-link" href="<c:url value='/admin/adminpage.jsp'/>" target="_blank">[관리자페이지]</a>
 					<% } %>
                     <a class="nav-item nav-link" href="<c:url value='/goods?cmd=list&page=0'/>">도서쇼핑</a>
                     <a class="nav-item nav-link" href="<c:url value='/cart?cmd=list&page=0&userName=${sessionScope.userName }'/>">장바구니</a>
