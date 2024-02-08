@@ -15,7 +15,7 @@
 	<div class="card">
 	  	<div class="card-body" style="display:flex">
 	  	<div>
-	  	<img src="upload/small/${dto.code}.jpg" width="200" height="300" />
+	  	<img src="upload/small/${dto.code}.jpg" width="200" height="300" style="margin-right:30px" />
 	  	</div>
 	  	<div>
 	  		<h3>주문자 : ${dto.username}</h3>
@@ -34,8 +34,7 @@
 	<br>
 
 		<a href="#" class="btn btn-primary">구매하기</a>
-				<%-- <a href="<%= request.getContextPath() %>
-				/goods?cmd=basket&code=${dto.code}&stack=${dto.stack}" class="btn btn-primary">장바구니 가기</a> --%>
+		<a href="<%=request.getContextPath() %>/cart?cmd=deleteAll&userName=${sessionScope.userName}" class="btn btn-primary">장바구니 비우기</a>
 		
 		
 	

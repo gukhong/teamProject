@@ -35,36 +35,39 @@ public class CartController extends HttpServlet {
     	//장바구니 뽑기
     	if(cmd.equals("list")) {
     		String userName = req.getParameter("userName");
-    		
-    		if(userName!=null) {
+ 
     			List<CartDTO> list = cartservise.list(userName);
     			req.setAttribute("list", list);
         		req.getRequestDispatcher("/cart/list.jsp")
         		.forward(req, res);
-    		}else {
-    			Script.back("로그인 해주세요 ", res);
-    		}
     	}
     	
     	//장바구니 추가하기
     	else if (cmd.equals("add")) {
     		String userName = req.getParameter("userName");
     		String code = req.getParameter("code");
-    		if(userName!=null) {
-    			int result = cartservise.add(code, userName);
-    			if(result!=0) {
-    				Script.back("장바구니 담기 성공", res);
-    			} else {
-    				Script.back("장바구니 담기 실패", res);
-    			}
+ 
+			int result = cartservise.add(code, userName);
+			if (result != 0) {
+				Script.back("장바구니 담기 성공", res);
+			} else {
+				Script.back("장바구니 담기 실패", res);
+			}
+
+		}
+    	
+    	//장바구니 비우기
+    	else if(cmd.equals("deleteAll")) {
+    		String userName = req.getParameter("userName");
+    		System.out.println(userName);
+    		int  result = cartservise.deleteAll(userName);
+    		if(result !=0) {
+    			Script.alertmsg("장바구니 비우기 성공", "goods?cmd=list&page=0", res);
     		}else {
-    			Script.back("로그인 해주세요 ", res);
+    			Script.back("장바구니 비우기 실패", res);
     		}
     		
-    		
-    		
-			
-		}
+    	}
     	
     			
 		

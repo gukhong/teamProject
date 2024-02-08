@@ -19,5 +19,10 @@ public class CartService {
 	public int add (String code , String userName) {
 		return cartDAO.add(code, userName);
 	}
+	
+	//장바구니 비우기
+	public int deleteAll (String userName) {
+		return cartDAO.deleteAll(userName);
+	}
 
 }
