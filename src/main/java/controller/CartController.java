@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 
 import domain.cart.CartDTO;
 import service.CartService;
+import utile.Script;
 
 
 @WebServlet("/cart")
@@ -28,31 +29,39 @@ public class CartController extends HttpServlet {
     
     protected void process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     	String cmd = req.getParameter("cmd");
-    	System.out.println(cmd);
+    	System.out.println("cart  " +cmd);
     	CartService cartservise = new CartService();
     
     	//장바구니 뽑기
     	if(cmd.equals("list")) {
-    		List<CartDTO> list = cartservise.list();
-    		req.setAttribute("list", list);
-    		req.getRequestDispatcher("/cart/list.jsp");
+    		String userName = req.getParameter("userName");
+    		
+    		if(userName!=null) {
+    			List<CartDTO> list = cartservise.list(userName);
+    			req.setAttribute("list", list);
+        		req.getRequestDispatcher("/cart/list.jsp")
+        		.forward(req, res);
+    		}else {
+    			Script.back("로그인 해주세요 ", res);
+    		}
     	}
     	
     	//장바구니 추가하기
-    	else if (cmd.equals("list")) {
-    		BufferedReader br = req.getReader();
-    		String data = br.readLine();
-    		Gson gson = new Gson(); 
-    		CartDTO cartdto = gson.fromJson(data, CartDTO.class);
-    		int result = cartservise.add(cartdto.getCode(), cartdto.getUsername());
-    		if(result ==1) {
-    			req.getSession().setAttribute("cart", 1);
+    	else if (cmd.equals("add")) {
+    		String userName = req.getParameter("userName");
+    		String code = req.getParameter("code");
+    		if(userName!=null) {
+    			int result = cartservise.add(code, userName);
+    			if(result!=0) {
+    				Script.back("장바구니 담기 성공", res);
+    			} else {
+    				Script.back("장바구니 담기 실패", res);
+    			}
+    		}else {
+    			Script.back("로그인 해주세요 ", res);
     		}
-    
-    		PrintWriter out = res.getWriter();
-    		out.print("ok");
-    		out.flush();
-    		out.close();
+    		
+    		
     		
 			
 		}

@@ -10,11 +10,9 @@
     <title>대현문고 main</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> <!-- Jquery -->
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
-
      <!-- 섬머노트 -->
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
@@ -84,7 +82,7 @@
                     <a class="nav-item nav-link" href="<c:url value='/user/join.jsp'/>">회원가입</a>
                     <a class="nav-item nav-link" href="<c:url value='/user/login.jsp'/>">로그인</a>
                     <a class="nav-item nav-link" href="<c:url value='/goods?cmd=list&page=0'/>">도서쇼핑</a>
-                    <a class="nav-item nav-link" href="<c:url value='/goods?cmd=cart&page=0'/>">장바구니</a>
+                    <a class="nav-item nav-link" href="<c:url value='/cart?cmd=list&page=0&userName=${sessionScope.userName }'/>">장바구니</a>
                 </div>
             </div>
         </div>
@@ -110,7 +108,7 @@
 					<% } %>
                     <a class="nav-item nav-link" href="<c:url value='/user/login.jsp'/>">장바구니</a>
                     <a class="nav-item nav-link" href="<c:url value='/goods?cmd=list&page=0'/>">도서쇼핑</a>
-                    <a class="nav-item nav-link" href="<c:url value='/goods?cmd=cart&page=0'/>">장바구니</a>
+                    <a class="nav-item nav-link" href="<c:url value='/cart?cmd=list&page=0&userName=${sessionScope.userName }'/>">장바구니</a>
                 </div>
             </div>
         </div>
