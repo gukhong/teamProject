@@ -104,6 +104,25 @@ public class CartDAO {
 		
 	}
 	
-	
+	public int deleteAll (String userName) {
+		int result = 0;
+		System.out.println("userName : " + userName);
+		
+		con = DBConnection.getConnection();
+		String query = "delete from cart where username = ?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, userName);
+			result = psmt.executeUpdate();
+			System.out.println("result : " + result);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(con, stmt);
+		}
+		return result;
+	}
 	
 }

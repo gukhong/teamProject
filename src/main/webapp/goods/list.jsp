@@ -10,7 +10,7 @@
 	<div class="card">
 	  	<div class="card-body" style="display:flex">
 	  	<div>
-	  	<img src="upload/small/${dto.code}.jpg" width="200" height="300" />
+	  	<img src="upload/small/${dto.code}.jpg" width="200" height="300" style="margin-right:30px"/>
 	  	</div>
 	  	<div>
 	  		<input type="hidden" name ="cartCode" value="${dto.code }" />
@@ -25,14 +25,7 @@
 	  	
 		</div>
 		<a href="<%= request.getContextPath() %>/goods?cmd=detail&code=${dto.code}" class="btn btn-primary">상세보기</a>
-		<c:choose>
-			<c:when test="${sessionScope.code!=null}">
-			<button type="button" onclick="/cart?cmd=list" class="btn btn-primary">장바구니 가기</button>
-			</c:when>
-			<c:otherwise>
-			<button type="button" onclick="location.href='<%=request.getContextPath() %>/cart?cmd=add&userName=${sessionScope.userName }&code=${dto.code }'" class="btn btn-primary">장바구니 담기</button>
-			</c:otherwise>
-		</c:choose>
+		<button type="button" onclick="location.href='<%=request.getContextPath() %>/cart?cmd=add&userName=${sessionScope.userName }&code=${dto.code }'" class="btn btn-primary">장바구니 담기</button>
 		
 		
 	</div>

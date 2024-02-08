@@ -89,7 +89,7 @@ create table bbs(
 bbsid number primary key, 							//등록번호
 bbstitle varchar2(50 byte), 							//제목
 userid varchar2(20 byte), 							//사용자 아이디
-bbsdate date not null default sysdate, 			// 등록일
+bbsdate date  default sysdate not null, 			// 등록일
 bbscontent varchar2(2048 byte), 					//내용
 bbsavailable number									//삭제참조값
 );
