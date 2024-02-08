@@ -82,7 +82,6 @@
                     <a class="nav-item nav-link" href="<c:url value='/user/join.jsp'/>">회원가입</a>
                     <a class="nav-item nav-link" href="<c:url value='/user/login.jsp'/>">로그인</a>
                     <a class="nav-item nav-link" href="<c:url value='/goods?cmd=list&page=0'/>">도서쇼핑</a>
-                    <a class="nav-item nav-link" href="<c:url value='/cart?cmd=list&page=0&userName=${sessionScope.userName }'/>">장바구니</a>
                 </div>
             </div>
         </div>
@@ -106,7 +105,6 @@
 					<% if("admin".equals(userId)){ %>
 						<a class="nav-item nav-link" href="<c:url value='/admin/adminpage.jsp'/>" target="_blank">[관리자 페이지]</a>
 					<% } %>
-                    <a class="nav-item nav-link" href="<c:url value='/user/login.jsp'/>">장바구니</a>
                     <a class="nav-item nav-link" href="<c:url value='/goods?cmd=list&page=0'/>">도서쇼핑</a>
                     <a class="nav-item nav-link" href="<c:url value='/cart?cmd=list&page=0&userName=${sessionScope.userName }'/>">장바구니</a>
                 </div>
