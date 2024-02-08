@@ -29,7 +29,7 @@ public class CartController extends HttpServlet {
     
     protected void process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     	String cmd = req.getParameter("cmd");
-    	System.out.println("cart  " +cmd);
+    	System.out.println("cart cmd :  " +cmd);
     	CartService cartservise = new CartService();
     
     	//장바구니 뽑기
@@ -59,8 +59,8 @@ public class CartController extends HttpServlet {
     	//장바구니 비우기
     	else if(cmd.equals("deleteAll")) {
     		String userName = req.getParameter("userName");
-    		System.out.println(userName);
     		int  result = cartservise.deleteAll(userName);
+    		System.out.println("result = " +result);
     		if(result !=0) {
     			Script.alertmsg("장바구니 비우기 성공", "goods?cmd=list&page=0", res);
     		}else {
