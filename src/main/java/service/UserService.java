@@ -105,7 +105,6 @@ public class UserService {
 				userDTO.setUserId(rs.getString("userId"));
 				userDTO.setUserName(rs.getString("userName"));
 				userDTO.setUserPass(rs.getString("userPass"));
-				//다른 필요한 필드도 설정가능
 				
 			}
 		} catch (Exception e) {
@@ -116,6 +115,66 @@ public class UserService {
 		}
     	return userDTO;
     }
+    
+    //비밀번호 일치여부 확인
+    public boolean checkPassword(String userId, String password) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBConnection.getConnection();
+            String sql = "SELECT userId FROM user_info WHERE userId = ? AND userPass = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userId);
+            pstmt.setString(2, password);
+            
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+                return true; // 사용자가 존재하고 비밀번호가 일치하는 경우
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(conn, pstmt, rs);
+        }
+        
+        return false; // 사용자가 존재하지 않거나 비밀번호가 일치하지 않는 경우
+    }
+
+    
+    //비밀번호 업데이트
+    public void updatePassword(String userId, String newPassword) throws Exception {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	
+    	try {
+			conn = DBConnection.getConnection();
+			
+			//사용자 존재 여부 확인
+    		if(!isUserExist(userId)) {
+    			throw new Exception("존재하지 않는 사용자입니다.");
+    		}
+    		
+    		//사용자가 존재한다면 비밀번호 업데이트
+    		String sql = "UPDATE user_info SET userPass = ? WHERE userId = ?";
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setString(1, newPassword);
+    		pstmt.setString(2, userId);
+    		
+    		 int affectedRows = pstmt.executeUpdate();
+    	        if (affectedRows == 0) {
+    	            throw new Exception("비밀번호 업데이트에 실패하였습니다.");
+    	        }
+    	    } catch (Exception e) {
+    	        e.printStackTrace();
+    	        throw e; // 상위 호출 메서드로 예외를 전파합니다.
+    	    } finally {
+    	        DBConnection.close(conn, pstmt);
+    	    }
+    	}
+    
 }
  
     
