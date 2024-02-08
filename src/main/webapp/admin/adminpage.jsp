@@ -23,13 +23,8 @@
        stmt = conn.createStatement();
        String sql = "SELECT * FROM user_info";
        rs = stmt.executeQuery(sql);
-
-       while (rs.next()) {
-           String userId = rs.getString("userId");
-           String userPass = rs.getString("userPass");
-           String userName = rs.getString("userName");
-           String regiDate = rs.getString("registerDate");
 %>
+
 <h2>가입자 정보</h2>
 	<table border="1">
 	    <tr>
@@ -37,23 +32,36 @@
 	        <th>PASSWORD</th>
 	        <th>NAME</th>
 	        <th>JOINDATE</th>
+	        <th>기능</th>
 	    </tr>
+<% 
+	while (rs.next()) {
+           String userId = rs.getString("userId");
+           String userPass = rs.getString("userPass");
+           String userName = rs.getString("userName");
+           String regiDate = rs.getString("registerDate");
+%>
 	    <tr>
 	        <td><%= userId %></td>
 	        <td><%= userPass %></td>
 	        <td><%= userName %></td>
 	        <td><%= regiDate %></td>
+	        <td>
+	        	<form method="post" action="resetPassword.jsp">
+	        		<input type="hidden" name="userId" value="<%= userId %>">
+	        		<input type="submit" value="비밀번호 초기화">
+	        	</form>
+	        </td>
 	    </tr>
+<%
+	}
+%>
 </table>
 <%
-        }
     } catch (Exception e) {
         e.printStackTrace();
         out.println("<p>이용자 정보를 불러오는데 실패했습니다.</p>");
-    } /* finally {
-        DBConnection.close(conn, stmt, rs); // 자원 해제
-    } */
-   
+    }  
 %>
 <br>
 <br>
