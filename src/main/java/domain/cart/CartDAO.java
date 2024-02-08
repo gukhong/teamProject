@@ -18,14 +18,15 @@ public class CartDAO {
 	Statement stmt;
 	ResultSet rs;
 	
-	public List<CartDTO> list(){
+	public List<CartDTO> list(String userName){
 		con = DBConnection.getConnection();
 		List<CartDTO> list = new ArrayList<CartDTO>();
-		String query = "Selet * from cart";
+		String query = "select * from cart where username = ?";
 		
 		try {
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(query);
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, userName);
+			rs = psmt.executeQuery();
 			while(rs.next()) {
 				CartDTO dto = new CartDTO();
 				dto = CartDTO.builder()
@@ -73,9 +74,10 @@ public class CartDAO {
 		} finally {
 			DBConnection.close(con, stmt, rs);
 		}
+		
 		con = DBConnection.getConnection();
 		String query = "insert into cart (username ,code ,bookname, bookprice, author, stack )"
-						 + " values (?,?,?,?,?,?);";
+						 + " values (?,?,?,?,?,?)";
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1,userName );
@@ -85,6 +87,8 @@ public class CartDAO {
 			psmt.setString(5, cartDTO.getAuthor());
 			psmt.setInt(6, cartDTO.getStack());
 			result = psmt.executeUpdate();
+			
+			System.out.println();
 			
 			
 		} catch (SQLException e) {

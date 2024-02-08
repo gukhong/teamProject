@@ -5,30 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp" %>
-
-
-<script>
-	function cartadd(userName, code){
-		let data = {
-			userName : userName,
-			code : code
-		};
-		
-		 $.ajax({
-			type : "POST",
-			url : "/cart?cmd=add",
-			data : JSON.stringify(data),
-			contentType : "application/json; charset=utf-8"
-		}).done(function(result){
-			if(result=="ok"){
-				alert("장바구니 담기 성공");
-			}else{
-				alert("재고부족");
-			}
-		
-		})
-	}
-</script>
 <h3 id="test">상품 리스트 <a><input type="text" name="select" value="검색하기"/></a></h3>
 	<c:forEach var="dto" items="${list}">
 	<div class="card">
@@ -54,7 +30,7 @@
 			<button type="button" onclick="/cart?cmd=list" class="btn btn-primary">장바구니 가기</button>
 			</c:when>
 			<c:otherwise>
-			<button type="button" onclick="cartadd( '${sessionScope.userName }' , '${dto.code }')" class="btn btn-primary">장바구니 담기</button>
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/cart?cmd=add&userName=${sessionScope.userName }&code=${dto.code }'" class="btn btn-primary">장바구니 담기</button>
 			</c:otherwise>
 		</c:choose>
 		

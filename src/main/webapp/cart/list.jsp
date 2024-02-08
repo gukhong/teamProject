@@ -8,7 +8,7 @@
 
 
 
-<h3>카트 리스트</h3>
+<h3>장바구니</h3>
 
 	
 	<c:forEach var="dto" items="${list}">
